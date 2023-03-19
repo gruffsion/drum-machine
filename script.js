@@ -9,7 +9,22 @@ const stepElements = document.querySelectorAll(".step");
 const numVoices = 4;
 const numSteps = 8;
 const swingSlider = document.getElementById("swingSlider");
-const swingValue = document.getElementById("swingValue");
+
+
+//controls for volume and pitch
+const kickVolumeSlider = document.getElementById("kickVolumeSlider");
+const kickTuneSlider = document.getElementById("kickTuneSlider");
+const kickDecaySlider = document.getElementById("kickDecaySlider");
+const kickDecayValue = document.getElementById("kickDecayValue");
+const snareVolumeSlider = document.getElementById("snareVolumeSlider");
+const snarePitchSlider = document.getElementById("snarePitchSlider");
+const snareDecaySlider = document.getElementById("snareDecaySlider");
+const hiHatVolumeSlider = document.getElementById("hihat-volume");
+const hiHatPitchSlider = document.getElementById("hihat-pitch");
+const hiHatDecaySlider = document.getElementById("hihatDecaySlider");
+const cowbellVolumeSlider = document.getElementById("cowbellVolumeSlider");
+const percussionTuning = document.getElementById("percussionTuning");
+const percussionDecaySlider = document.getElementById("percussionDecaySlider");
 
 
 
@@ -21,7 +36,7 @@ const delayTimeValue = document.getElementById("delayTimeValue");
 const delayGainSlider = document.getElementById("delayGainSlider");
 const delayGainValue = document.getElementById("delayGainValue");
 const delayGain = new Tone.Gain(0).toDestination();
-const delayEffect = new Tone.FeedbackDelay(0.0, 0.0);
+const delayEffect = new Tone.FeedbackDelay(0.25, 0.0);
 delayEffect.connect(delayGain);
 
 
@@ -45,16 +60,36 @@ feedbackSlider.addEventListener("input", (event) => {
 });
 
   delayTimeSlider.addEventListener("input", (event) => {
-    const newDelayTime = event.target.value / 1000;
+    const newDelayTime = event.target.value;
     delayEffect.delayTime.value = newDelayTime;
   });
 
 // Update the delay gain value when the delay gain slider changes
 delayGainSlider.addEventListener("input", (event) => {
-    const newGainValue = event.target.value / 100;
+    const newGainValue = event.target.value;
     delayGain.gain.value = newGainValue;
   });
 
+
+//Distortion element
+const distortion = new Tone.BitCrusher(8);
+const distortionFilter = new Tone.Filter(400, "highpass").connect(distortion);
+distortion.wet.value = 1;
+const distortionGain = new Tone.Gain(0).toDestination();
+distortion.chain(distortionGain);
+const distortionGainSlider = document.getElementById("distortionGain");
+const distortionGainSlider2 = document.getElementById("distortionSlider2");
+
+distortionGainSlider.addEventListener('input', (event) => {
+  const newDistortion = event.target.value;
+  // distortion.wet.value = newDistortion;
+  distortionGain.gain.value = newDistortion;
+});
+
+distortionGainSlider2.addEventListener('input', (event) => {
+  const newValue= event.target.value;
+  distortion.bits.value = newValue;;
+});
 
 //filter Elements
 const frequencySlider = document.getElementById('frequencySlider');
@@ -92,11 +127,17 @@ resonanceSlider.addEventListener('input', (event) => {
   }).toDestination();
 
 
+  filter.chain(distortionFilter);
+
+
+
+
+
 
 
   class KickSound {
     constructor() {
-      this.baseFrequency = Tone.Frequency('A0').toFrequency();
+      this.baseFrequency = Tone.Frequency('A0');
       this.currentFrequency = this.baseFrequency;
       this.pitchDecayValue = 0.01;
       this.volumeVariable = -10;
@@ -192,6 +233,11 @@ class SnareSound {
     });
   }
 
+  setDecay(newdecay) {
+    this.rattle.envelope.decay = newdecay;
+   
+  }
+
   setVolume(volume) {
     this.poly.volume.value = volume;
     this.rattle.volume.value = volume;
@@ -210,7 +256,7 @@ class HiHatSound {
   constructor() {
     
     this.hat = new Tone.NoiseSynth({
-      volume: -15,
+      volume: -17,
       noise: {
         type: 'white'
       },
@@ -218,7 +264,7 @@ class HiHatSound {
         attack: 0.02,
         decay: 0.1,
         sustain: 0,
-        release: 0.2,
+        release: 0.1,
       },
     });
 
@@ -229,19 +275,21 @@ class HiHatSound {
     });
 
     this.hat.connect(this.hatFilter);
-    this.hatFilter.connect(filter);
     this.hatFilter.connect(delayEffect);
+     this.hatFilter.connect(filter);
   }
 
   setVolume(volume) {
     this.hat.volume.value = volume;
   }
 
-  setPitch(pitch) {
-    const minValue = 4000;
-    const maxValue = 12000;
-    const newFrequency = minValue + (maxValue - minValue) * (pitch / 100);
-    this.hatFilter.frequency.value = newFrequency;
+  setPitch(newPitch) {
+    this.hatFilter.Q.value = newPitch;
+  }
+
+  setDecay(newdecay) {
+    this.hat.envelope.decay = newdecay;
+    this.hat.envelope.release = newdecay;
   }
 
   play(time) {
@@ -267,16 +315,23 @@ let cowbellPitch = 'A5';
           decay: 0.05,
           sustain: 0.01
         },
-        volume: -10
+        volume: -15
       });
       this.click.connect(delayEffect);
       this.click.connect(filter);
+
     }
 
     setVolume(volume) {
       this.click.volume.value = volume;
     }
   
+    setDecay(newdecay) {
+      this.click.envelope.decay = newdecay;
+    }
+  
+
+
     play(time) {
       this.click.triggerAttackRelease(cowbellPitch, '16n', time, 0.8);
     }
@@ -284,17 +339,6 @@ let cowbellPitch = 'A5';
 
 
 
-//controls for volume and pitch
-const kickVolumeSlider = document.getElementById("kickVolumeSlider");
-const kickTuneSlider = document.getElementById("kickTuneSlider");
-const kickDecaySlider = document.getElementById("kickDecaySlider");
-const kickDecayValue = document.getElementById("kickDecayValue");
-const snareVolumeSlider = document.getElementById("snareVolumeSlider");
-const snarePitchSlider = document.getElementById("snarePitchSlider");
-const hiHatVolumeSlider = document.getElementById("hihat-volume");
-const hiHatPitchSlider = document.getElementById("hihat-pitch");
-const cowbellVolumeSlider = document.getElementById("cowbellVolumeSlider");
-const percussionTuning = document.getElementById("percussionTuning");
 
 
 
@@ -328,6 +372,13 @@ snarePitchSlider.addEventListener("input", () => {
   snare.setTuning(newPitch);
 });
 
+snareDecaySlider.addEventListener("input", (event) => {
+  const newDecay = event.target.value;
+  snare.setDecay(newDecay);
+});
+
+
+
 hiHatVolumeSlider.addEventListener("input", () => {
   const newVolume = hiHatVolumeSlider.value;
   hihat.setVolume(newVolume);
@@ -338,6 +389,12 @@ hiHatPitchSlider.addEventListener("input", () => {
   hihat.setPitch(newPitch);
 });
 
+hiHatDecaySlider.addEventListener("input", (event) => {
+  const newDecay = event.target.value;
+  hihat.setDecay(newDecay);
+});
+
+
 cowbellVolumeSlider.addEventListener("input", (event) => {
   const newVolume = event.target.value;
   cowbell.setVolume(newVolume);
@@ -347,6 +404,11 @@ percussionTuning.addEventListener("input", (event) => {
   const baseFrequency = Tone.Frequency('A5');
   const newFrequency = baseFrequency.transpose(event.target.value);
   cowbellPitch = newFrequency.toNote();
+});
+
+percussionDecaySlider.addEventListener("input", (event) => {
+  const newDecay = event.target.value;
+  cowbell.setDecay(newDecay);
 });
 
 
@@ -371,17 +433,10 @@ const hihat = new HiHatSound();
 const cowbell = new CowbellSound();
 
 
-
-
-
-
-
-
 swingSlider.addEventListener("input", (event) => {
   const newSwing = event.target.value;
-  swingValue.textContent = newSwing;
-  Tone.Transport.swing = newSwing / 100;
-  Tone.Transport.swingSubdivision = "16n";
+  Tone.Transport.swing = newSwing;
+  // Tone.Transport.swingSubdivision = "16n";
 });
 
 
