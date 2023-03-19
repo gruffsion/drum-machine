@@ -54,9 +54,7 @@ delayGainSlider.addEventListener("input", (event) => {
 
 //filter Elements
 const frequencySlider = document.getElementById('frequencySlider');
-const frequencyValue = document.getElementById('frequencyValue');
 const resonanceSlider = document.getElementById('resonanceSlider');
-const resonanceValue = document.getElementById('resonanceValue');
 
 function mapFrequency(sliderValue) {
   const minValue = 20;
@@ -73,13 +71,11 @@ function mapFrequency(sliderValue) {
 frequencySlider.addEventListener('input', (event) => {
   const sliderValue = event.target.value;
   const newFrequency = mapFrequency(sliderValue);
-  frequencyValue.textContent = newFrequency.toFixed(2);
   filter.frequency.value = newFrequency;
 });
 
 resonanceSlider.addEventListener('input', (event) => {
   const newResonance = event.target.value;
-  resonanceValue.textContent = newResonance;
   filter.Q.value = newResonance;
 });
 
@@ -500,7 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         for (let tabContent of tabContents) {
           if (tabContent.id === target) {
-            tabContent.style.display = "block";
+            tabContent.style.display = "grid";
           } else {
             tabContent.style.display = "none";
           }
@@ -526,3 +522,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // Set the initial active tab
   document.querySelector('.tab').click();
+
+
+
+  
