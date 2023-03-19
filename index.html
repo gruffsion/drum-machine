@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div id ="header-options"><h1>Header Options</h1></div>
+<div id ="header-options"><h1>Drum Machine</h1></div>
 
 
 <div id="main-container">
@@ -89,57 +89,53 @@
 <div id = "parameter-controls">
   <div id="drum-paramaters">
       <div class="tabs">
-        <div class="tab" data-target="kickControl">Kick</div>
+        <div class="tab active" data-target="kickControl">Kick</div>
         <div class="tab" data-target="snareControl">Snare</div>
         <div class="tab" data-target="hatsControl">Hats</div>
         <div class="tab" data-target="percussionControl">Perc</div>
       </div>
       <div class="tab-content" id="kickControl">
-        <!-- Kick controls go here -->
         <div class="input-container">
+          <label class= "tab-content-label" for="kickVolumeSlider">Vol</label>
           <input type="range" id="kickVolumeSlider" min="-60" max="5" value="-10" step="1">
-          <label for="kickVolumeSlider">Vol</label>
         </div>
       <div class="input-container">
+          <label class= "tab-content-label" for="kickTuneSlider">Tune</label>
           <input type="range" id="kickTuneSlider" min="-1200" max="1200" step="1" value="0">
-          <label for="kickTuneSlider">Tune</label>
       </div>
       <div class="input-container">
+          <label class= "tab-content-label" for="kickDecaySlider">Decay</label>
           <input type="range" id="kickDecaySlider" min="0" max="500" value="100" step="1">
-          <label for="kickDecaySlider">Decay</label>
       </div>
     </div>
       <div class="tab-content" id="snareControl" style="display:none;">
-        <!-- Snare controls go here -->
         <div class="input-container">
+        <label class= "tab-content-label" for="snareVolumeSlider">Vol</label>
         <input type="range" id="snareVolumeSlider" min="-60" max="5" step="1" value="-10">
-        <label for="snareVolumeSlider">Vol</label>
         </div>
         <div class="input-container">
+        <label class= "tab-content-label" for="snarePitchSlider">Tune</label>
         <input type="range" id="snarePitchSlider" min="-2400" max="2400" value="0" step="1">
-        <label for="snarePitchSlider">Tune</label>
         </div>
       </div>
       <div class="tab-content" id="hatsControl" style="display:none;">
-        <!-- Hats controls go here -->
         <div class="input-container">
+        <label class= "tab-content-label" for="hihat-volume">Vol</label>
         <input type="range" id="hihat-volume" min="-60" max="5" step="1" value="-10">
-        <label for="hihat-volume">Vol</label>
         </div>
         <div class="input-container">
+        <label class= "tab-content-label" for="hihat-pitch">Tune</label>
         <input type="range" id="hihat-pitch" min="0.5" max="50" step="0.1" value="1">
-        <label for="hihat-pitch">Tune</label>
         </div>
       </div>
       <div class="tab-content" id="percussionControl" style="display:none;">
-        <!-- Percussion controls go here -->
         <div class="input-container">
-        <input type="range" id="cowbellVolumeSlider" min="-60" max="5" step="1" value="-10">
-        <label for="cowbellVolumeSlider">Vol</label>
+        <label class= "tab-content-label" for="cowbellVolumeSlider">Vol</label>
+       <input type="range" id="cowbellVolumeSlider" min="-60" max="5" step="1" value="-10">
         </div>
         <div class="input-container">
+        <label class= "tab-content-label" for="percussionTuning">Tune</label>
         <input type="range" id="percussionTuning" min="-12" max="12" value="0" step="0.1">
-        <label for="percussionTuning">Tune</label>
         </div>
       </div>
     </div>
@@ -149,7 +145,7 @@
 
     <div id="master-effects">
       <div class="tabs">
-        <div class="tab" data-target="delay-controls">Delay</div>
+        <div class="tab active" data-target="delay-controls">Delay</div>
         <div class="tab" data-target="filter-controls">Filter</div>
         <div class="tab" data-target="distortion-controls">Distort</div>
 
@@ -157,15 +153,15 @@
       <div class="tab-content" id="delay-controls">
         <!-- Delay controls go here -->
         <div>
-          <label for="feedbackSlider">Feedback:</label>
+          <label class= "tab-content-label" for="feedbackSlider">Feedback:</label>
           <input type="range" id="feedbackSlider" min="0" max="100" step="1" value="0">
         </div>
         <div>
-          <label for="delayGainSlider">Volume:</label>
+          <label class= "tab-content-label" for="delayGainSlider">Volume:</label>
           <input type="range" id="delayGainSlider" min="0" max="100" step="1" value="0">
         </div>
         <div>
-          <label for="delayTimeSlider">Delay Time:</label>
+          <label class= "tab-content-label" for="delayTimeSlider">Delay Time:</label>
           <input type="range" id="delayTimeSlider" min="0" max="1000" step="1" value="0">
           </div>
       
@@ -173,14 +169,12 @@
       <div class="tab-content" id="filter-controls" style="display:none;">
         <!-- Filter controls go here -->
         <div>
-          <label for="frequencySlider">Frequency:</label>
+          <label class= "tab-content-label" for="frequencySlider">Frequency:</label>
           <input type="range" id="frequencySlider" min="0" max="100" value="100" step="1">
-          <span id="frequencyValue">10000</span> Hz
         </div>
         <div>
-          <label for="resonanceSlider">Resonance (Q):</label>
+          <label class= "tab-content-label" for="resonanceSlider">Resonance:</label>
           <input type="range" id="resonanceSlider" min="0" max="20" value="1" step="0.1">
-          <span id="resonanceValue">1</span>
         </div>
 
 
@@ -188,14 +182,12 @@
       <div class="tab-content" id="distortion-controls" style="display:none;">
         <!-- Filter controls go here -->
         <div>
-          <label for="distortionSlider1">VALUE1:</label>
-          <input type="range" id="distortionSlider1" min="0" max="100" value="100" step="1">
-          <span id="distortionValue1">??</span> Hz
+          <label class= "tab-content-label" for="distortionSlider1">VALUE1:</label>
+          <input type="range" id="distortionSlider1" min="0" max="20" value="1" step="0.1">
         </div>
         <div>
-          <label for="distortionSlider2">VALUE 2:</label>
+          <label class= "tab-content-label" for="distortionSlider2">VALUE 2:</label>
           <input type="range" id="distortionSlider2" min="0" max="20" value="1" step="0.1">
-          <span id="distortionValue2">???</span>
         </div>     
       </div>
     </div>
