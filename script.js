@@ -1,3 +1,7 @@
+document.documentElement.addEventListener("mousedown", () => {
+  if (Tone.context.state !== "running") Tone.context.resume();
+});
+
 const playStopButton = document.getElementById("playStopButton");
 const tempoSlider = document.getElementById("tempoSlider");
 const tempoValue = document.getElementById("tempoValue");
