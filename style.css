@@ -1,0 +1,140 @@
+#main-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  width: 100%;
+  padding: 5px;
+}
+
+
+#step-sequencer-container{
+  grid-row: 1;
+}
+
+
+#step-sequencer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.step {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #ccc;
+  border: 2px solid #999;
+  border-radius: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  height: 2rem;
+  margin: 0;
+  outline: none;
+  position: relative;
+  width: 2rem;
+}
+
+.step:checked {
+  background-color: #008cba;
+  border-color: #000000;
+}
+
+.step:focus {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes activeColumnAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.activeColumn {
+  /* background: rgb(237, 247, 255);
+  /* border-color: #afffb2;
+  border-radius: 2px; */
+  animation: activeColumnAnimation 0.5s ease-in-out; /* Add this line */
+}
+
+#transport-controls{
+  grid-row: 2;
+  background-color: rgb(255, 209, 234);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+button {
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  margin: 5px; 
+
+}
+
+button:hover {
+  background-color: #0078a7;
+}
+
+
+#parameter-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px; /* Add gap between columns */
+}
+
+#master-effects {
+  grid-row: 3;
+  grid-column: 1;
+  background-color: rgb(239, 255, 181);
+}
+
+#drum-paramaters {
+  grid-row: 3;
+  grid-column: 2;
+  background-color: aquamarine;
+  }
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: #ccc;
+}
+
+.tab:hover {
+  background-color: #bbb;
+}
+
+.tab.active {
+  background-color: #008cba;
+  color: white;
+
+}
+
+
