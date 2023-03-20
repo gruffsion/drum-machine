@@ -31,6 +31,7 @@ h1{
   background-color: rgba(242, 225, 140, 1);
   border: 1rem;
   color: #618488;  
+  color: rgba(191, 94, 59, 1);
   opacity: 90%;
 }
 
@@ -131,6 +132,7 @@ h1{
 #master-effects {
   grid-row: 3;
   grid-area: master-effects;
+
   width: 100%
 
 }
@@ -237,7 +239,7 @@ input[type=range]::-webkit-slider-thumb {
 
 
   input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #618488;
+    background: #bbb;
   }
   
 
