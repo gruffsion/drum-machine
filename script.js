@@ -450,7 +450,7 @@ playStopButton.addEventListener("click", () => {
     stepIndex = 1;
   } else {
     Tone.Transport.stop();
-    Tone.Transport.position = "0:0:0"; // Set position to the start
+    //Tone.Transport.position = "0:0:0"; // Set position to the start
     playStopButton.textContent = "Start";
     stepIndex = 1;
   }
@@ -498,11 +498,11 @@ function updateSequencer(currentStep, time){
   columnElements.forEach((column, index) => {
     const steps = stepElements;
 
-    if (index + 1 === currentStep) {
-      column.classList.add("activeColumn");
-    } else {
-      column.classList.remove("activeColumn");
-    }
+    //if (index + 1 === currentStep) {
+      //column.classList.add("activeColumn");
+    //} else {
+      //column.classList.remove("activeColumn");
+    //}
 
     steps.forEach((step) => {
       // Trigger the drum sound if the step is checked and active
