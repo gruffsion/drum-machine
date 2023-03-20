@@ -7,6 +7,10 @@ body{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
   font-weight: bold; 
+  user-select: none;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+   -moz-user-select: none;/* Firefox all */
+   -ms-user-select: none; 
 }
 
 h1{
@@ -26,8 +30,8 @@ h1{
   padding: 0.5rem;
   background-color: rgba(242, 225, 140, 1);
   border: 1rem;
-  color: rgba(122, 137, 165, 1);
-  opacity: 80%;
+  color: #618488;  
+  opacity: 90%;
 }
 
 
@@ -127,14 +131,12 @@ h1{
 #master-effects {
   grid-row: 3;
   grid-area: master-effects;
-  background-color: rgba(191, 179, 9, 1);
   width: 100%
 
 }
 
 #drum-paramaters {
   grid-row: 2;
-  background-color: rgba(191, 179, 9, 1);
   grid-area: drum-parameters;
   width: 100%
   }
@@ -151,7 +153,7 @@ h1{
   flex: 1;
   text-align: center;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
   background-color: rgba(242, 148, 94, 1);
   
 }
@@ -184,7 +186,6 @@ input[type=range] {
 }
 
 
-
 input[type=range] {
   -webkit-appearance: none; 
   background: transparent; 
@@ -199,21 +200,14 @@ input[type=range]:focus {
 }
 
 
-input[type=range]::-ms-track {
-  width: 100%;
-  cursor: pointer;
-  background: transparent; 
-  border-color: transparent;
-  color: transparent;
-}
+
 
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  
-  height: 3vw;
+  height: 1.5vw;
   width: 4vw;
-  border-radius: 0px;
+  /* border-radius: 0px; */
   background: #ffffff;
   cursor: pointer;
   margin-top: 0vw; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */}
@@ -231,20 +225,11 @@ input[type=range]::-webkit-slider-thumb {
   
 
 
-  input[type=range]::-ms-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
-    background: #ffffff;
-    cursor: pointer;
-  }
 
 
   input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 3vw;
+    height: 1.5vw;
     cursor: pointer;
     background:rgba(191, 94, 59, 1);
     border-radius: 1.3px;
@@ -258,7 +243,7 @@ input[type=range]::-webkit-slider-thumb {
 
   input[type=range]::-moz-range-track {
     width: 100%;
-    height: 3vw;
+    height: 2vw;
     cursor: pointer;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
     background: #618488;
