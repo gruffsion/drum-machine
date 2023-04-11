@@ -498,11 +498,11 @@ function updateSequencer(currentStep, time){
   columnElements.forEach((column, index) => {
     const steps = stepElements;
 
-    //if (index + 1 === currentStep) {
-      //column.classList.add("activeColumn");
-    //} else {
-      //column.classList.remove("activeColumn");
-    //}
+    if (index + 1 === currentStep) {
+      column.classList.add("activeColumn");
+    } else {
+      column.classList.remove("activeColumn");
+    }
 
     steps.forEach((step) => {
       // Trigger the drum sound if the step is checked and active
